@@ -5,13 +5,14 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Selectable))]
 public class SelectionTest : Selectable
 {
     bool selected = false;
 
     public UnityEvent selectedAction;
     public UnityEvent deSelectedAction;
+
+    
 
     // Start is called before the first frame update
 
