@@ -57,6 +57,8 @@ public class Game : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             EndTurn();
+            bool win = CheckForWin();
+            Debug.Log(win);
         }
     }
 
@@ -68,6 +70,6 @@ public class Game : MonoBehaviour
             count += p.tokens.Count;
         }
 
-        return (count == 1);
+        return (count <= 1);
     }
 }
