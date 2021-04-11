@@ -47,7 +47,7 @@ public class GameSession : MonoBehaviour
                 Debug.Log("StartSession");
                 Score = 0;
                 EventManager.Instance.TriggerEvent("StartSession");
-                GameController.Instance.transition.StartTransition(Color.clear, 1);
+                //GameController.Instance.transition.StartTransition(Color.clear, 1);
                 State = eState.Session;
                 break;
             case eState.Session:
@@ -80,7 +80,7 @@ public class GameSession : MonoBehaviour
 
     public void OnPlayerDead()
     {
-        GameController.Instance.transition.StartTransition(Color.black, 1);
+        //GameController.Instance.transition.StartTransition(Color.black, 1);
         timer = 2.0f;
         State = eState.EndSession;
     }
