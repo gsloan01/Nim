@@ -52,6 +52,7 @@ public class GameController : MonoBehaviour
     {
         titleScreen.SetActive(false);
         selectScreen.SetActive(false);
+        gameOptionsScreen.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
