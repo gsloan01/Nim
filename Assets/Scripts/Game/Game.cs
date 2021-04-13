@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    //Controls
-    public static bool CONT_Select = false;
-
-    public static GameControls controls;
-
-
     public GameObject pileParent;
     Pile[] piles;
     Pile selectedPile;
@@ -33,7 +27,7 @@ public class Game : MonoBehaviour
         instance = this;
     }
 
-    public void OnEndTurn()
+    public void EndTurn()
     {
         if (selectedTokens.Count == 0) return;
         RemoveTokens();
@@ -54,20 +48,16 @@ public class Game : MonoBehaviour
     void Start()
     {
         piles = pileParent.GetComponentsInChildren<Pile>();
-        controls = new GameControls();
-        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    EndTurn();
-        //    bool win = CheckForWin();
-        //    Debug.Log(win);
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            EndTurn();
+        }
     }
 
     bool CheckForWin() 
@@ -78,6 +68,6 @@ public class Game : MonoBehaviour
             count += p.tokens.Count;
         }
 
-        return (count <= 1);
+        return (count == 1);
     }
 }
