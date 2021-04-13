@@ -151,7 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3020744077459642543}
   m_Layer: 0
-  m_Name: NimParent1x3x5
+  m_Name: NimParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
