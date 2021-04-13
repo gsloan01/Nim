@@ -9,7 +9,6 @@ public class GameController : MonoBehaviour
     public GameObject titleScreen;
     public GameObject optionsScreen;
     public GameObject pauseScreen;
-    public GameObject selectScreen;
     //public Transition transition;
 
     public AudioMixer audioMixer;
@@ -50,14 +49,12 @@ public class GameController : MonoBehaviour
     public void OnLoadGameScene(string scene)
     {
         titleScreen.SetActive(false);
-        selectScreen.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         //transition.StartTransition(Color.black, 2);
         SceneManager.LoadScene(scene);
     }
-
 
     public void OnLoadMenuScene(string sceneName)
     {
@@ -83,7 +80,6 @@ public class GameController : MonoBehaviour
     {
         titleScreen.SetActive(true);
         optionsScreen.SetActive(false);
-        selectScreen.SetActive(false);
     }
 
     public void OnOptionsScreen()
@@ -114,14 +110,6 @@ public class GameController : MonoBehaviour
             Cursor.visible = true;
         }
     }
-
-    public void OnSelectScreen()
-    {
-        selectScreen.SetActive(true);
-        titleScreen.SetActive(false);
-        optionsScreen.SetActive(false);
-    }
-
 
     public void OnPause()
     {
