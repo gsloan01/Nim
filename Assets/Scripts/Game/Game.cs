@@ -13,6 +13,20 @@ public class Game : MonoBehaviour
     static Game instance;
     public static Game Instance { get { return instance; } }
 
+    public enum eState
+    {
+        Title,
+        StartGame,
+        Player1Turn,
+        Player2Turn,
+        EndGame
+    }
+
+    public eState State { get; set; } = eState.Title;
+
+    public Player player1;
+    public Player player2;
+
     public Pile selectablePile { get
         {
             foreach (Pile p in piles)
@@ -27,7 +41,47 @@ public class Game : MonoBehaviour
         instance = this;
     }
 
-    public void EndTurn()
+    public void Update()
+    {
+        switch (State)
+        {
+            case eState.Title:
+                break;
+            case eState.StartGame:
+                break;
+            case eState.Player1Turn:
+                player1.TakeTurn();
+                if (CheckForWin())
+                {
+                    State = eState.EndGame;
+                }
+
+                if (player1.turnOver)
+                {
+                    State = eState.Player2Turn;
+                    player1.turnOver = false;
+                }
+                break;
+            case eState.Player2Turn:
+                player2.TakeTurn();
+                if (CheckForWin())
+                {
+                    State = eState.EndGame;
+                }
+                if (player2.turnOver)
+                {
+                    State = eState.Player1Turn;
+                    player2.turnOver = false;
+                }
+                break;
+            case eState.EndGame:
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void OnEndTurn()
     {
         if (selectedTokens.Count == 0) return;
         RemoveTokens();
@@ -48,17 +102,28 @@ public class Game : MonoBehaviour
     void Start()
     {
         piles = pileParent.GetComponentsInChildren<Pile>();
-
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            EndTurn();
-        }
-    }
+    //void Update()
+    //{
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    EndTurn();
+        //    bool win = CheckForWin();
+        //    Debug.Log(win);
+        //}
+    //}
+
+
+    // Update is called once per frame
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        EndTurn();
+    //    }
+    //}
 
     bool CheckForWin() 
     {
