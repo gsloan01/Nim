@@ -9,7 +9,7 @@ public class Token : Selectable
 {
     public Pile parentPile { get; set; }
 
-    bool selected = false;
+    public bool selected { get; set; } = false;
 
     public UnityEvent selectedAction;
     public UnityEvent deSelectedAction;
