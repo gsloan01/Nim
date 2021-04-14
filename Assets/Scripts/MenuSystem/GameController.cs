@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject selectScreen;
     public GameObject gameOptionsScreen;
+    public GameObject menuCamera;
+    public GameObject gameCamera;  
     //public Transition transition;
 
     public AudioMixer audioMixer;
@@ -53,6 +55,9 @@ public class GameController : MonoBehaviour
         titleScreen.SetActive(false);
         selectScreen.SetActive(false);
         gameOptionsScreen.SetActive(false);
+
+        menuCamera.SetActive(false);
+        gameCamera.SetActive(true);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
