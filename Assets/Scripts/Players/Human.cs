@@ -11,7 +11,7 @@ public class Human : Player
 
     public void OnEndTurn()
     {
-        if (true)
+        if (Game.Instance.selectedTokens.Count > 0)
         {
             turnOver = true;
         }
