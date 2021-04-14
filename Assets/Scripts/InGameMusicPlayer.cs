@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class InGameMusicPlayer : MonoBehaviour
 {
     public List<AudioClip> tracks = new List<AudioClip>();
+    public TMP_Text songNameDisplay;
 
     AudioSource audioSource;
     float timer = 0;
     int trackIndex;
-    Random rand = new Random();
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class InGameMusicPlayer : MonoBehaviour
         trackIndex = Random.Range(0, tracks.Count-1);
         audioSource.clip = tracks[trackIndex];
         audioSource.Play();
+        songNameDisplay.text = "Currently Playing : \n" + tracks[trackIndex].name;
     }
 
     // Update is called once per frame
@@ -30,6 +32,9 @@ public class InGameMusicPlayer : MonoBehaviour
             trackIndex = Random.Range(0, tracks.Count - 1);
             audioSource.clip = tracks[trackIndex];
             audioSource.Play();
+
+            songNameDisplay.text = "Currently Playing : \n" + tracks[trackIndex].name;
+
 
         }
     }
