@@ -27,6 +27,9 @@ public class GameController : MonoBehaviour
     public GameData currentGame;
     public TextMesh ah;
 
+    string player1name;
+    string player2name;
+
     //public Transition transition;
 
     public AudioMixer audioMixer;
@@ -53,9 +56,20 @@ public class GameController : MonoBehaviour
     {
         //titleScreen.SetActive(true);
 
-        highScore = PlayerPrefs.GetInt("HighScore", 0);
-        PlayerPrefs.SetInt("HighScore", highScore);
 
+
+    }
+
+
+    public void gameReset()
+    {
+        currentGame.IsAI = false;
+        currentGame.Hard = false;
+        currentGame.modeSelected = false;
+        currentGame.difficultySelected = false;
+        currentGame.gameOver = false;
+        currentGame.player1Name = null;
+        currentGame.player2Name = null;
     }
 
     public void SetHighScore(int score)
@@ -66,11 +80,13 @@ public class GameController : MonoBehaviour
 
     public void OnLoadGameScene(string scene)
     {
-        string player1name = player1Input.GetComponent<TMP_InputField>().text;
-        string player2name = player2Input.GetComponent<TMP_InputField>().text;
-
+        player1name = player1Input.GetComponent<TMP_InputField>().text;
         currentGame.player1Name = player1name;
-        currentGame.player2Name = player2name;
+        if (!currentGame.IsAI)
+        {
+            player2name = player2Input.GetComponent<TMP_InputField>().text;
+            currentGame.player2Name = player2name;
+        }
 
         titleScreen.SetActive(false);
         selectScreen.SetActive(false);
@@ -117,6 +133,7 @@ public class GameController : MonoBehaviour
         selectScreen.SetActive(false);
         gameOptionsScreen.SetActive(false);
         gameOverScreen.SetActive(false);
+
     }
 
     public void OnOptionsScreen()
@@ -151,6 +168,14 @@ public class GameController : MonoBehaviour
     public void OnSelectScreen()
     {
         selectScreen.SetActive(true);
+
+        if(currentGame.IsAI)
+        {
+            player2Panel.SetActive(false);
+            currentGame.player2Name = "Pesky Dwarf";
+
+        }
+
         titleScreen.SetActive(false);
         optionsScreen.SetActive(false);
         gameOptionsScreen.SetActive(false);
@@ -164,6 +189,7 @@ public class GameController : MonoBehaviour
         optionsScreen.SetActive(false);
         gameOptionsScreen.SetActive(true);
 
+        gameReset();
         
 
     }

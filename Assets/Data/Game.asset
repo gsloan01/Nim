@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3cb5d6aaff7e14c9baae4198f3a26d, type: 3}
   m_Name: Game
   m_EditorClassIdentifier: 
-  player1Name: 
-  player2Name: 
-  IsAI: 0
-  Hard: 0
+  player1Name: 123
+  player2Name: 321
+  IsAI: 1
+  Hard: 1
   difficultySelected: 1
   modeSelected: 1
   gameOver: 0
