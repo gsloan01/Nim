@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject selectScreen;
     public GameObject gameOptionsScreen;
+    public GameObject gameOverScreen;
+
     //public GameObject menuCamera;
     //public GameObject gameCamera;
     public GameObject player1Panel;
@@ -113,6 +115,7 @@ public class GameController : MonoBehaviour
         optionsScreen.SetActive(false);
         selectScreen.SetActive(false);
         gameOptionsScreen.SetActive(false);
+        gameOverScreen.SetActive(false);
     }
 
     public void OnOptionsScreen()
@@ -169,6 +172,16 @@ public class GameController : MonoBehaviour
 
     }
 
+    public void OnGameOverScreen()
+    {
+        if (currentGame.gameOver == true)
+        {
+            gameOverScreen.SetActive(true);
+        }
+        
+    }
+
+
 
     public void OnPause()
     {
@@ -188,5 +201,10 @@ public class GameController : MonoBehaviour
     public void OnSFXVolume(float level)
     {
         audioMixer.SetFloat("SFXVolume", level);
+    }
+
+    public void Update()
+    {
+        OnGameOverScreen();
     }
 }

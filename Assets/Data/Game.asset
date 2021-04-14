@@ -15,5 +15,7 @@ MonoBehaviour:
   player1Name: 
   player2Name: 
   IsAI: 0
-  Easy: 0
   Hard: 0
+  difficultySelected: 1
+  modeSelected: 1
+  gameOver: 0

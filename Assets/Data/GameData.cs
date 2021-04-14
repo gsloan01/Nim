@@ -12,6 +12,7 @@ public class GameData : ScriptableObject
 
     public bool difficultySelected;
     public bool modeSelected;
+    public bool gameOver;
 
     public  bool gameCanStart { get { return (difficultySelected && modeSelected); } }
 
