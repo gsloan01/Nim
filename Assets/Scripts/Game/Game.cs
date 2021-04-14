@@ -5,7 +5,7 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public GameObject pileParent;
-    Pile[] piles;
+    public static Pile[] piles;
     Pile selectedPile;
 
     public List<Token> selectedTokens { get; set; } = new List<Token>();
@@ -26,6 +26,7 @@ public class Game : MonoBehaviour
 
     public Player player1;
     public Player player2;
+
 
     public Pile selectablePile { get
         {
