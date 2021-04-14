@@ -15,8 +15,9 @@ public class GameController : MonoBehaviour
     public GameObject gameOptionsScreen;
     public GameObject gameOverScreen;
 
-    //public GameObject menuCamera;
-    //public GameObject gameCamera;
+    public GameObject menuCamera;
+    public GameObject gameCamera;
+
     public GameObject player1Panel;
     public GameObject player2Panel;
 
@@ -75,13 +76,13 @@ public class GameController : MonoBehaviour
         selectScreen.SetActive(false);
         gameOptionsScreen.SetActive(false);
 
-        //menuCamera.SetActive(false);
-        //gameCamera.SetActive(true);
+        menuCamera.SetActive(false);
+        gameCamera.SetActive(true);
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
         //transition.StartTransition(Color.black, 2);
-        SceneManager.LoadScene(scene);
+        //SceneManager.LoadScene(scene);
 
 
 
@@ -152,12 +153,7 @@ public class GameController : MonoBehaviour
         selectScreen.SetActive(true);
         titleScreen.SetActive(false);
         optionsScreen.SetActive(false);
-
-       
-
-
-
-        
+        gameOptionsScreen.SetActive(false);
     }
 
     public void OnGameOptionsScreen()
