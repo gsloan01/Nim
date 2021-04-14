@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    public GameObject pileParent;
-    public static Pile[] piles;
-    Pile selectedPile;
 
-    public List<Token> selectedTokens { get; set; } = new List<Token>();
 
     static Game instance;
     public static Game Instance { get { return instance; } }
@@ -23,9 +19,21 @@ public class Game : MonoBehaviour
     }
 
     public eState State { get; set; } = eState.Title;
+    public List<Token> selectedTokens { get; set; } = new List<Token>();
 
-    public Player player1;
-    public Player player2;
+    public GameData gameData;
+    public static Pile[] piles;
+    public Player humanPrefab;
+    public Player computerPrefab;
+    public GameObject easyPrefab;
+    public GameObject hardPrefab;
+    public Transform pileLocator;
+
+    Pile selectedPile;
+    GameObject pileParent;
+    Player player1;
+    Player player2;
+    //GameObject difficulty;
 
 
     public Pile selectablePile { get
@@ -47,8 +55,16 @@ public class Game : MonoBehaviour
         switch (State)
         {
             case eState.Title:
+                State = eState.StartGame;
                 break;
             case eState.StartGame:
+                player1 = Instantiate(humanPrefab);
+                player1.name = gameData.player1Name;
+                player2 = (gameData.IsAI) ? Instantiate(computerPrefab) : Instantiate(humanPrefab);
+                player2.name = gameData.player2Name;
+                pileParent = (gameData.Hard) ? Instantiate(hardPrefab) : Instantiate(easyPrefab);
+                piles = pileParent.GetComponentsInChildren<Pile>();
+                State = (Random.Range(0, 2) == 0) ? eState.Player1Turn : eState.Player2Turn;
                 break;
             case eState.Player1Turn:
                 player1.TakeTurn();
@@ -98,33 +114,6 @@ public class Game : MonoBehaviour
         selectedTokens.Clear();
         selectablePile.SelectedTokens = 0;
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        piles = pileParent.GetComponentsInChildren<Pile>();
-    }
-
-    // Update is called once per frame
-    //void Update()
-    //{
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    EndTurn();
-        //    bool win = CheckForWin();
-        //    Debug.Log(win);
-        //}
-    //}
-
-
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        EndTurn();
-    //    }
-    //}
 
     bool CheckForWin() 
     {
