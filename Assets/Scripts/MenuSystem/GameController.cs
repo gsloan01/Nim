@@ -54,6 +54,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameReset();
         //titleScreen.SetActive(true);
 
 
@@ -80,6 +81,7 @@ public class GameController : MonoBehaviour
 
     public void OnLoadGameScene(string scene)
     {
+        
         player1name = player1Input.GetComponent<TMP_InputField>().text;
         currentGame.player1Name = player1name;
         if (!currentGame.IsAI)
@@ -128,11 +130,13 @@ public class GameController : MonoBehaviour
 
     public void OnTitleScreen()
     {
+        gameReset();
         titleScreen.SetActive(true);
         optionsScreen.SetActive(false);
         selectScreen.SetActive(false);
         gameOptionsScreen.SetActive(false);
         gameOverScreen.SetActive(false);
+        
 
     }
 
@@ -199,6 +203,8 @@ public class GameController : MonoBehaviour
         if (currentGame.gameOver == true)
         {
             gameOverScreen.SetActive(true);
+            gameCamera.SetActive(false);
+            menuCamera.SetActive(true);
         }
         
     }
