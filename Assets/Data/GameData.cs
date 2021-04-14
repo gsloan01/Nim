@@ -8,7 +8,11 @@ public class GameData : ScriptableObject
     public string player1Name;
     public string player2Name;
     public bool IsAI;
-    public bool Easy;
     public bool Hard;
-    
+
+    public bool difficultySelected;
+    public bool modeSelected;
+
+    public  bool gameCanStart { get { return (difficultySelected && modeSelected); } }
+
 }

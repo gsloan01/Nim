@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -11,8 +13,17 @@ public class GameController : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject selectScreen;
     public GameObject gameOptionsScreen;
-    public GameObject menuCamera;
-    public GameObject gameCamera;  
+    //public GameObject menuCamera;
+    //public GameObject gameCamera;
+    public GameObject player1Panel;
+    public GameObject player2Panel;
+
+    public GameObject player1Input;
+    public GameObject player2Input;
+
+    public GameData currentGame;
+    public TextMesh ah;
+
     //public Transition transition;
 
     public AudioMixer audioMixer;
@@ -52,17 +63,27 @@ public class GameController : MonoBehaviour
 
     public void OnLoadGameScene(string scene)
     {
+        string player1name = player1Input.GetComponent<TMP_InputField>().text;
+        string player2name = player2Input.GetComponent<TMP_InputField>().text;
+
+        currentGame.player1Name = player1name;
+        currentGame.player2Name = player2name;
+
         titleScreen.SetActive(false);
         selectScreen.SetActive(false);
         gameOptionsScreen.SetActive(false);
 
-        menuCamera.SetActive(false);
-        gameCamera.SetActive(true);
+        //menuCamera.SetActive(false);
+        //gameCamera.SetActive(true);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         //transition.StartTransition(Color.black, 2);
         SceneManager.LoadScene(scene);
+
+
+
+        gameOptionsScreen.SetActive(false);
     }
 
 
@@ -128,7 +149,12 @@ public class GameController : MonoBehaviour
         selectScreen.SetActive(true);
         titleScreen.SetActive(false);
         optionsScreen.SetActive(false);
-        gameOptionsScreen.SetActive(false);
+
+       
+
+
+
+        
     }
 
     public void OnGameOptionsScreen()
@@ -138,6 +164,9 @@ public class GameController : MonoBehaviour
         titleScreen.SetActive(false);
         optionsScreen.SetActive(false);
         gameOptionsScreen.SetActive(true);
+
+        
+
     }
 
 
